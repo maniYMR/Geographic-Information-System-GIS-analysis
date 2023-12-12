@@ -1,0 +1,1 @@
+CREATE INDEX idx_name ON gis_osm_buildings_a_free_1 (name);
