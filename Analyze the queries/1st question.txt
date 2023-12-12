@@ -1,0 +1,13 @@
+The query retrieves information about buildings from the "gis_osm_buildings_a_free_1" table, specifically focusing on the name of the building, its geometry type, and the calculated area. Entries without a building name are excluded from the results.
+
+Here's an explanation of the query execution plan:
+
+The plan begins with a "Gather" step, where the estimated cost ranges from 1000.00 to 409635.01. This step involves coordinating the work of multiple workers (2 in this case) for parallel execution.
+
+The next step is a "Parallel Seq Scan" (Parallel Sequential Scan) on the "gis_osm_buildings_a_free_1" table. Two worker processes are planned and launched to scan the table in parallel. This parallel processing aims to enhance query performance.
+
+A filter condition "name IS NOT NULL" is applied to exclude records with null names. This filter removes a substantial number of rows (specifically, 1,364,711 rows) from the result set, indicating that a significant portion of the table lacks building names.
+
+The estimated number of rows to be returned by the query is 51,985, and the average row width is expected to be 60 bytes.
+
+Overall, the query execution plan suggests that the query is not using indexes, possibly due to the absence of an index on the "name" column or because the Postgres query planner has determined that a sequential scan is the most efficient approach for this specific query. The actual query execution time ranges from 0.678 to 1056.140 milliseconds.
